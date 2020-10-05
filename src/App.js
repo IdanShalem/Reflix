@@ -53,7 +53,7 @@ class App extends Component {
   handleRemove = (userName, movieId) => {
     const users = [...this.state.users]
     const user = users.find(u => u.name === userName)
-    const movieIndex = user.rentedMovies.findIndex(m => m.id === movieId)
+    const movieIndex = user.rentedMovies.findIndex(m => m.id == movieId)
     user.rentedMovies.splice(movieIndex, 1)
     user.budget += 3
     this.setState({
