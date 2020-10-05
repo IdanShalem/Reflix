@@ -1,0 +1,12 @@
+.movie-detail{
+    display: grid;
+    grid-template-rows: 15vh 45vh 40vh;
+    justify-content: center;
+    padding: 15vw;
+    padding-top: 2vh;
+}
+
+.movie-detail-img{
+    height: 20vw;
+    justify-self: center;
+}

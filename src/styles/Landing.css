@@ -1,0 +1,32 @@
+#landing-content{
+    padding: 5vw;
+}
+
+#users-content{
+    grid-gap: 10vw;
+}
+
+.user-card{
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.user-card:hover{
+    box-shadow: 1px 1px 20px #868686;
+}
+
+.user-card-name{
+    display: grid;
+    padding: 2px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+    box-shadow: 0px -25px 50px white inset;
+}

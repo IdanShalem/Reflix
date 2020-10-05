@@ -1,4 +1,47 @@
+#catalog-container{
+    padding: 5vw;
+    padding-top: 2vh;
+}
+
+#catalog-header{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+#input_search{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid oldlace;
+    color: white;
+    font-size: 1.5em;
+}
+
+.user-info{
+    justify-self: end;
+} 
+
+
+.user-info h4{
+    display: inline-block;
+    margin-left: 10px;
+    align-self: end;
+    justify-self: start;
+}
+
+#user-info-avatar{
+    width: 30px;
+    justify-self: end;
+    border-radius: 50%;
+}
+
+.movies{
+    padding-top: 20px;
+    text-align: start;
+}
+
 .movies-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 80px;
 }

@@ -15,17 +15,14 @@ class Movie extends Component {
     render() {
         const movie = this.props.movie
         return (
-            
-                <div className="movie-card">
-                    <Link to={`/movies/${movie.id}`}>
-                        <img className="movie-card-img" src={movie.img} alt=""/>
-                    </Link>
-                    {this.props.rented 
-                        ? <p id={movie.id} onClick={this.handleRemove}>REMOVE</p>
-                        : <p id={movie.id} onClick={this.handleRent}>RENT</p>}
-                    
-                </div>
-            
+            <div className="movie-card">
+                {this.props.rented 
+                    ? <i id={movie.id} onClick={this.handleRemove} class="fa fa-minus-circle"></i>
+                    : <i id={movie.id} onClick={this.handleRent} class="fa fa-plus-circle"></i>}  
+                <Link to={`/movies/${movie.id}`} style={{textDecoration: "none"}}>  
+                    <img className="movie-card-img" src={movie.img} alt=""/>
+                </Link>
+            </div>
         );
     }
 }

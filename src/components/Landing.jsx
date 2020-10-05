@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Landing.css'
 
 class Landing extends Component {
 
@@ -9,8 +10,18 @@ class Landing extends Component {
 
     render() {
         return (
-            <div>
-                {this.props.users.map(u => <Link to={`/catalog/${u.name}`} id={u.name} onClick={this.userEntered}>{u.name}</Link>)}
+            <div id="landing-content">
+                <h1>WHO'S WATCHING?</h1>
+                <div id="users-content">
+                    {this.props.users.map(u => {return (
+                        <Link to={`/catalog/${u.name}`}>
+                            <div className="user-card" id={u.name} onClick={this.userEntered} style={{backgroundImage: "url(" + u.avatar + ")"}}>
+                                <span className="user-card-name">{u.name}</span>
+                            </div>
+                        </Link>
+                    )}
+                    )}
+                </div>
             </div>
     );
   }

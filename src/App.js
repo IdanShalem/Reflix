@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import Landing from './components/Landing'
 import Catalog from './components/Catalog'
 import MovieDetail from './components/MovieDetail'
+import logo from './HatchfulExport-All/logo_transparent.png'
 
 class App extends Component {
 
@@ -18,9 +19,9 @@ class App extends Component {
             { id: 4, title: "Beauty and the Beast", year: 2016, img: "https://images-na.ssl-images-amazon.com/images/I/51ArFYSFGJL.jpg", descrShort: "Basically the same as the original, except now Hermi-- Emma Wattson plays Belle, fittingly so some would say, given how actively progressive she is regarding women's rights. Rumor has it that in the bonus scenes she whips out a wand and turns Gaston into a toad, but in order to watch those scenes you need to recite a certain incantation." }
       ],
       users: [
-          {id: 1, name: 'Idan', budget: 100, rentedMovies:[]},
-          {id: 2, name: 'Coral', budget: 100, rentedMovies:[]},
-          {id: 3, name: 'Cohen', budget: 100, rentedMovies:[]}
+          {id: 1, name: 'Idan', avatar:'https://mir-s3-cdn-cf.behance.net/project_modules/disp/84c20033850498.56ba69ac290ea.png', budget: 10, rentedMovies:[]},
+          {id: 2, name: 'Coral', avatar:'https://i.pinimg.com/originals/34/62/d2/3462d27440aa255b1c314ff16f4032b4.png', budget: 10, rentedMovies:[]},
+          {id: 3, name: 'Cohen', avatar:'https://mir-s3-cdn-cf.behance.net/project_modules/disp/bf6e4a33850498.56ba69ac3064f.png', budget: 10, rentedMovies:[]}
       ],
       currentUser: undefined
     }
@@ -33,13 +34,17 @@ class App extends Component {
   handleRent = (userName, movie) => {
     const users = [...this.state.users]
     const user = users.find(u => u.name === userName)
-    if(user.budget >= 30)
+    if(user.budget >= 3)
     {
-      user.rentedMovies.push(movie)
-      user.budget -= 30
-      this.setState({
-        users
-      })
+      if(!user.rentedMovies.find(m => m.id === movie.id)){
+        user.rentedMovies.push(movie)
+        user.budget -= 3
+        this.setState({
+          users
+        })
+      } else{
+        alert('This movie is already in the renting list. Try another one.')
+      }
     } else {
       alert('Not enough budget for renting this movie. Please remove movies from renting list.')
     }
@@ -50,21 +55,27 @@ class App extends Component {
     const user = users.find(u => u.name === userName)
     const movieIndex = user.rentedMovies.findIndex(m => m.id === movieId)
     user.rentedMovies.splice(movieIndex, 1)
-    user.budget += 30
+    user.budget += 3
     this.setState({
       users
     })
+  }
+
+  handleRedirect = () => {
+    
   }
 
   render() {
       return (
       <Router>
         <div className="App">
-          <div id="main-links">
-            <Link to="/">Home</Link>
-            <Link to={`/catalog/${this.state.currentUser}`}>Catalog</Link>
+          <div id='header'>
+            <div id='links'>
+              <Link className='main-links' to="/"><span>Home</span></Link>
+              <Link className='main-links' to={`/catalog/${this.state.currentUser}`}><span>Catalog</span></Link>
+            </div>
+            <img id="logo" src={logo}/>
           </div>
-          <hr/>
           <Route path="/" exact render={() => <Landing users={this.state.users} userEntered={this.userEntered}/>} />
           <Route path="/catalog/:userName" 
             exact render={({match}) => <Catalog 
@@ -72,8 +83,8 @@ class App extends Component {
               movies={this.state.movies}
               users={this.state.users}
               handleRent={this.handleRent}
-              handleRemove={this.handleRemove}/>} 
-          />
+              handleRemove={this.handleRemove}
+              currentUser={this.state.currentUser}/>} />
           <Route path="/movies/:movieId" exact render={({ match }) => <MovieDetail match={match} movies={this.state.movies}/>}/>
         </div>
       </Router>
