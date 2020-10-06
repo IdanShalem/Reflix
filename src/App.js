@@ -74,7 +74,7 @@ class App extends Component {
               <Link className='main-links' to="/"><span>Home</span></Link>
               <Link className='main-links' to={`/catalog/${this.state.currentUser}`}><span>Catalog</span></Link>
             </div>
-            <img id="logo" src={logo}/>
+            <img id="logo" src={logo} alt="logo"/>
           </div>
           <Route path="/" exact render={() => <Landing users={this.state.users} userEntered={this.userEntered}/>} />
           <Route path="/catalog/:userName" 

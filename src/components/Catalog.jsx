@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Movie from './Movie'
 import {Redirect} from 'react-router-dom'
 import '../styles/Catalog.css'
